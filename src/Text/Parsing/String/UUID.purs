@@ -17,7 +17,7 @@ import Text.Parsing.String.Repetition as R
 -- | Consumes a valid UUID string (xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx), or fails otherwise.
 -- | Does not validate UUID version `M` and UUID variant of `N`.
 -- | Fails if the 5th group is followed by additional lowercase hexadecimal characters.
-lowercase :: forall a m. S.StringLike a => Monad m => ParserT a m String
+lowercase :: forall m. Monad m => ParserT String m String
 lowercase = do
   v <- R.exact 8  $ H.lowercase
   _ <- hyphen
@@ -36,7 +36,7 @@ lowercase = do
 -- | Consumes a valid UUID string (xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx), or fails otherwise.
 -- | Does not validate UUID version `M` and UUID variant of `N`.
 -- | Fails if the 5th group is followed by additional uppercase hexadecimal characters.
-uppercase :: forall a m. S.StringLike a => Monad m => ParserT a m String
+uppercase :: forall m. Monad m => ParserT String m String
 uppercase = do
   v <- R.exact 8  $ H.uppercase
   _ <- hyphen
@@ -55,7 +55,7 @@ uppercase = do
 -- | Consumes a valid UUID string (xxxxxxxx-xxxx-Mxxx-Nxxx-xxxxxxxxxxxx), or fails otherwise.
 -- | Does not validate UUID version `M` and UUID variant of `N`.
 -- | Fails if the 5th group is followed by additional hexadecimal characters.
-any :: forall a m. S.StringLike a => Monad m => ParserT a m String
+any :: forall m. Monad m => ParserT String m String
 any = do
   v <- R.exact 8  $ H.any
   _ <- hyphen
